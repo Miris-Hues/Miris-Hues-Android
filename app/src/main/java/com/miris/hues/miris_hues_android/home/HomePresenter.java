@@ -12,8 +12,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.miris.hues.miris_hues_android.R;
 import com.miris.hues.miris_hues_android.adapter.UserViewAdapter;
+import com.miris.hues.miris_hues_android.data.CognitiveTextData;
+import com.miris.hues.miris_hues_android.data.PropertiesUtil;
 import com.miris.hues.miris_hues_android.log.Loging;
-import com.miris.hues.miris_hues_android.person.PersonModel;
 import com.miris.hues.miris_hues_android.volley.VolleyServerConnection;
 
 import org.json.JSONException;
@@ -35,6 +36,8 @@ public class HomePresenter implements HomeContract.UserAction {
     public HomePresenter(HomeContract.View view) {
         this.mMainView = view;
 
+        PropertiesUtil.getInstance().setup();
+
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();
 
@@ -47,10 +50,12 @@ public class HomePresenter implements HomeContract.UserAction {
 
     @Override
     public void jsonDataGetClicked() {
+        String url = PropertiesUtil.getInstance().getProperty("cognitiveurl");
+        Loging.i(url);
         final RequestQueue rq = VolleyServerConnection.getInstance((MainActivity) mMainView).getRequestQueue();
 
         JsonObjectRequest jsonRQ = new JsonObjectRequest(Request.Method.GET,
-                "https://randomuser.me/api/?results=10",
+                "http://mirishueswebapp.azurewebsites.net/text",
                 new JSONObject(),
                 networkSuccessListener(),
                 networkErrorListener());
@@ -63,8 +68,8 @@ public class HomePresenter implements HomeContract.UserAction {
             public void onResponse(JSONObject response) {
                 try {
                     Loging.i("Network Success Loaded");
-                    Loging.i(response.getString("results"));
-                    List<PersonModel.Person> persons = Arrays.asList(gson.fromJson(response.getString("results"), PersonModel.Person[].class));
+                    Loging.i(response.getString("regions"));
+                    List<CognitiveTextData> persons = Arrays.asList(gson.fromJson(response.getString("regions"), CognitiveTextData[].class));
                     recyclerView.setAdapter(new UserViewAdapter((MainActivity) mMainView, persons));
                 } catch (JSONException e) {
                     e.printStackTrace();
