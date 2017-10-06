@@ -59,16 +59,19 @@ public class UserViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         CognitiveTextData item = items.get(position);
+        String str = "";
 
         for (int linesIdx = 0; linesIdx < item.getLines().size(); linesIdx++) {
             CognitiveTextData.Lines lines = item.getLines().get(linesIdx);
             for (int wordsIdx = 0; wordsIdx < lines.getWords().size(); wordsIdx++) {
-                TextView textView = new TextView(context);
-                textView.setText(lines.getWords().get(wordsIdx).getText());
-                textView.setTextColor(Color.BLACK);
-                ((JsonTextDataViewHolder) holder).root.addView(textView);
+                str += lines.getWords().get(wordsIdx).getText();
             }
         }
+
+        TextView textView = new TextView(context);
+        textView.setText(str);
+        textView.setTextColor(Color.BLACK);
+        ((JsonTextDataViewHolder) holder).root.addView(textView);
 
 //        final ImageLoader il = VolleyServerConnection.getInstance(context).getImageLoader();
 //
