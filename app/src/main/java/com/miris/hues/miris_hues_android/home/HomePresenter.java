@@ -37,6 +37,7 @@ public class HomePresenter implements HomeContract.UserAction {
         this.mMainView = view;
 
         PropertiesUtil.getInstance().setup();
+        Loging.i(PropertiesUtil.getInstance().getProperty("cognitiveurl"));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();
