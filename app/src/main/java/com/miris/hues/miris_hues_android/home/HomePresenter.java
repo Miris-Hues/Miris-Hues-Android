@@ -13,7 +13,6 @@ import com.google.gson.GsonBuilder;
 import com.miris.hues.miris_hues_android.R;
 import com.miris.hues.miris_hues_android.adapter.UserViewAdapter;
 import com.miris.hues.miris_hues_android.data.CognitiveTextData;
-import com.miris.hues.miris_hues_android.data.PropertiesUtil;
 import com.miris.hues.miris_hues_android.log.Loging;
 import com.miris.hues.miris_hues_android.volley.VolleyServerConnection;
 
@@ -36,8 +35,8 @@ public class HomePresenter implements HomeContract.UserAction {
     public HomePresenter(HomeContract.View view) {
         this.mMainView = view;
 
-        PropertiesUtil.getInstance().setup();
-        Loging.i(PropertiesUtil.getInstance().getProperty("cognitiveurl"));
+//        PropertiesUtil.getInstance().setup();
+//        Loging.i(PropertiesUtil.getInstance().getProperty("cognitiveurl"));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();
@@ -51,8 +50,8 @@ public class HomePresenter implements HomeContract.UserAction {
 
     @Override
     public void jsonDataGetClicked() {
-        String url = PropertiesUtil.getInstance().getProperty("cognitiveurl");
-        Loging.i(url);
+//        String url = PropertiesUtil.getInstance().getProperty("cognitiveurl");
+//        Loging.i(url);
         final RequestQueue rq = VolleyServerConnection.getInstance((MainActivity) mMainView).getRequestQueue();
 
         JsonObjectRequest jsonRQ = new JsonObjectRequest(Request.Method.GET,

@@ -1,5 +1,7 @@
 package com.miris.hues.miris_hues_android.data;
 
+import com.miris.hues.miris_hues_android.log.Loging;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -29,7 +31,7 @@ public class PropertiesUtil {
             prop = new Properties();
             cl = Thread.currentThread().getContextClassLoader();
             InputStream resourceStream = cl.getResourceAsStream("data.properties");
-//            Loging.i(String.valueOf(resourceStream));
+            Loging.i(String.valueOf(resourceStream));
             prop.load(resourceStream);
         } catch (IOException e) {
             e.printStackTrace();
