@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley;
  */
 
 public class VolleyServerConnection {
+    private final String TAG = "VolleyServerConnection";
     private static VolleyServerConnection instance;
     private RequestQueue rq;
     private ImageLoader il;

@@ -11,7 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.miris.hues.miris_hues_android.R;
-import com.miris.hues.miris_hues_android.adapter.UserViewAdapter;
+import com.miris.hues.miris_hues_android.adapter.CognitiveAdapter;
 import com.miris.hues.miris_hues_android.data.CognitiveTextData;
 import com.miris.hues.miris_hues_android.data.PropertiesUtil;
 import com.miris.hues.miris_hues_android.log.Loging;
@@ -70,7 +70,7 @@ public class HomePresenter implements HomeContract.UserAction {
                     Loging.i("Network Success Loaded");
                     Loging.i(response.getString("regions"));
                     List<CognitiveTextData> persons = Arrays.asList(gson.fromJson(response.getString("regions"), CognitiveTextData[].class));
-                    recyclerView.setAdapter(new UserViewAdapter((MainActivity) mMainView, persons));
+                    recyclerView.setAdapter(new CognitiveAdapter((MainActivity) mMainView, persons));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
