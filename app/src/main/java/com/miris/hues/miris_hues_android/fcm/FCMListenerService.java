@@ -22,6 +22,7 @@ import com.miris.hues.miris_hues_android.home.MainActivity;
 
 public class FCMListenerService extends FirebaseMessagingService {
     private FCMModel msg;
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -38,7 +39,6 @@ public class FCMListenerService extends FirebaseMessagingService {
 
     private void sendPushNotification() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 

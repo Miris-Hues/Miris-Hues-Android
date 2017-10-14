@@ -51,8 +51,9 @@ public class CognitiveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         for (int linesIdx = 0; linesIdx < item.getLines().size(); linesIdx++) {
             CognitiveTextData.Lines lines = item.getLines().get(linesIdx);
             for (int wordsIdx = 0; wordsIdx < lines.getWords().size(); wordsIdx++) {
-                str += lines.getWords().get(wordsIdx).getText();
+                str += lines.getWords().get(wordsIdx).getText() + " ";
             }
+            str += '\n';
         }
 
         TextView textView = new TextView(context);

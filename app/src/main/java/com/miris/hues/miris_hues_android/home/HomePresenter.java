@@ -29,14 +29,8 @@ import com.miris.hues.miris_hues_android.volley.VolleyServerConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by Null on 2017-10-01.
