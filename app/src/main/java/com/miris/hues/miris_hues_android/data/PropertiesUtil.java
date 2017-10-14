@@ -1,5 +1,8 @@
 package com.miris.hues.miris_hues_android.data;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+
 import com.miris.hues.miris_hues_android.log.Loging;
 
 import java.io.IOException;
@@ -25,14 +28,12 @@ public class PropertiesUtil {
         return ourInstance;
     }
 
-    public void setup() {
+    public void setup(Context context) {
         try {
-            ClassLoader cl;
             prop = new Properties();
-            cl = Thread.currentThread().getContextClassLoader();
-            InputStream resourceStream = cl.getResourceAsStream("data.properties");
-            Loging.i(String.valueOf(resourceStream));
-            prop.load(resourceStream);
+            AssetManager assetManager = context.getAssets();
+            InputStream inputStream = assetManager.open("data.properties");
+            prop.load(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
